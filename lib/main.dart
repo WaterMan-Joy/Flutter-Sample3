@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sample3/pages/counter_page.dart';
+import 'package:sample3/pages/handle_dialog_page.dart';
+import 'package:sample3/pages/navigate_page.dart';
 import 'package:sample3/providers/counter.dart';
 
 void main() {
@@ -52,6 +54,25 @@ class MyHomePage extends StatelessWidget {
                 child: Text(
                   'Counter Page',
                   style: TextStyle(fontSize: 20),
+                ),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (_) => HandleDialogPage()));
+                },
+                child: Text('Handle Dialog'),
+              ),
+              ElevatedButton(
+                onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => NavigatoePage(),
+                  ),
+                ),
+                child: Text(
+                  'Navigate Page',
+                  style: TextStyle(fontSize: 30),
                 ),
               ),
             ],

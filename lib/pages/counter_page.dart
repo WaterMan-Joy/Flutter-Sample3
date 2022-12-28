@@ -10,6 +10,20 @@ class CounterPage extends StatefulWidget {
 }
 
 class _CounterPageState extends State<CounterPage> {
+  int myCounter = 0;
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      context.read<Counter>().increment();
+      myCounter = context.read<Counter>().counter + 10;
+    });
+    // Future.delayed(Duration(seconds: 0), () {
+    //   context.read<Counter>().increment();
+    //   myCounter = context.read<Counter>().counter + 10;
+    // });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,7 +32,7 @@ class _CounterPageState extends State<CounterPage> {
       ),
       body: Center(
         child: Text(
-          'couner: ${context.watch<Counter>().counter}',
+          'couner: ${context.watch<Counter>().counter} / my counter: ${myCounter}',
           style: TextStyle(fontSize: 30),
           textAlign: TextAlign.center,
         ),
